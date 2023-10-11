@@ -1,0 +1,33 @@
+<resources>
+    <!-- Nome do aplicativo -->
+    <string name="app_name">TownTrove</string>
+
+    <!-- Título do layout de boas-vindas -->
+    <string name="titulo">Bem-vindo ao TownTrove</string>
+
+    <!-- Layout 1: Apresentação -->
+    <string name="apresentacao">
+        <!-- Explore, Descubra e Aproveite -->
+        Explore tudo o que Indaiatuba tem a oferecer com o TownTrove. Descubra lugares incríveis para comer,
+        se divertir e aproveitar momentos especiais na cidade. Com nossas recomendações cuidadosamente selecionadas,
+        sua jornada por Indaiatuba será inesquecível. Comece a explorar agora mesmo!
+    </string>
+
+    <!-- Layout 2: Recomendações de Restaurantes -->
+    <string name="recomendacao_titulo">Descubra Sabores Locais</string>
+    <string name="recomendacao_texto">
+        <!-- Explore, Descubra e Aproveite -->
+        Descubra as delícias da culinária de Indaiatuba com o TownTrove. Encontre os melhores restaurantes
+        e saboreie pratos autênticos que refletem a rica cultura da cidade. Nossas recomendações cuidadosamente
+        selecionadas garantem uma experiência gastronômica excepcional. Bon appétit!
+    </string>
+
+    <!-- Layout 3: Explorando a Cultura -->
+    <string name="explorar_titulo">Desvende a Cultura de Indaiatuba</string>
+    <string name="explorar_texto">
+        <!-- Explore, Descubra e Aproveite -->
+        Descubra a riqueza cultural de Indaiatuba com o TownTrove. Explore museus fascinantes, participe de eventos
+        artísticos emocionantes e mergulhe na cena cultural da cidade. Nossas recomendações tornarão sua jornada de
+        descoberta cultural memorável e enriquecedora. Viva cada momento!
+    </string>
+</resources>
