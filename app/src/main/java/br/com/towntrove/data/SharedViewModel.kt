@@ -1,4 +1,7 @@
 package br.com.towntrove.data
 
-class SharedViewModel {
+import androidx.lifecycle.ViewModel
+
+class SharedViewModel : ViewModel() {
+    var text: String = ""
 }

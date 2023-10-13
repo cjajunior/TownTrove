@@ -38,22 +38,24 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import br.com.towntrove.R
+import br.com.towntrove.data.DataCafe
 import br.com.towntrove.data.LocalDataProvider
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Navigation() {
+fun TownTroveApp() {
     val navController = rememberNavController()
     var text: String by remember {
         mutableStateOf("")
     }
+
     var isErrorVisible by remember { mutableStateOf(false) }
 
     NavHost(
         navController = navController,
-        startDestination = navScreens.Detalhes.route
+        startDestination = NavScreens.Inicio.route
     ) {
-        composable(navScreens.Detalhes.route) {
+        composable(NavScreens.Inicio.route) {
             Box(
                 modifier = Modifier.fillMaxSize(),
                 contentAlignment = Alignment.Center
@@ -118,7 +120,7 @@ fun Navigation() {
                 Button(
                     onClick = {
                         if (text.isNotEmpty() && !isErrorVisible) {
-                            navController.navigate(navScreens.Home.route) {
+                            navController.navigate(NavScreens.Detalhes.route) {
                                 // Limpa a pilha de navegação antes de ir para a tela principal
                                 popUpTo(navController.graph.findStartDestination().id) {
                                     saveState = true
@@ -136,14 +138,44 @@ fun Navigation() {
             }
         }
 
-        composable(navScreens.Home.route) {
+        composable(NavScreens.Detalhes.route) {
             TownTroveHomeScreen(
                 trove = LocalDataProvider.data.first()/* Seu trove aqui */,
                 navController = navController
             )
         }
-        composable(navScreens.principal.route) {
-            TelaPrincipal(text)
+        composable(NavScreens.Principal.route) {
+            Scaffold(
+                topBar = {
+                    ScaffoldTopBar(
+                        canNavigateBack = navController.previousBackStackEntry != null,
+                        navigateUp = { navController.navigateUp() }
+                    )
+                },
+            ) {
+                Box(
+                    modifier = Modifier.padding(it)
+                ) {
+                    Screentela(navController = rememberNavController())
+                }
+            }
+        }
+
+        composable(NavScreens.DetalhesCafe.route) {
+            Scaffold(
+                topBar = {
+                    ScaffoldTopBar(
+                        canNavigateBack = navController.previousBackStackEntry != null,
+                        navigateUp = { navController.navigateUp() }
+                    )
+                },
+            ) {
+                Box(
+                    modifier = Modifier.padding(it)
+                ) {
+                    CafeDetalhes()
+                }
+            }
         }
     }
 }
@@ -152,16 +184,23 @@ fun Navigation() {
 @Composable
 @Preview(showBackground = true, apiLevel = 30, device = "id:pixel_6")
 fun PrincipalScreenPreview() {
+    val navController = rememberNavController()
+
     Surface(
         modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background
     ) {
         Scaffold(
-            topBar = { ScaffoldTopBar() },
+            topBar = {
+                ScaffoldTopBar(
+                    canNavigateBack = navController.previousBackStackEntry != null,
+                    navigateUp = { navController.navigateUp() }
+                )
+            },
         ) {
             Box(
                 modifier = Modifier.padding(it)
             ) {
-                TelaPrincipal("Junior")
+                Screentela(navController = navController)
             }
         }
     }
